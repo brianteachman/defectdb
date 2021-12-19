@@ -59,16 +59,15 @@ class DefectManager():
     def save(self):
         db.session.commit()
 
-    def add_defect(self, defect) -> None:
-        # print(f'\nDefect to process: {defect}\n')
-        serial_number = defect["serial_number"]
-        location = defect["location"]
-        origin = defect["origin"]
-        type = defect["type"]
-        cause = defect["cause"]
-        found = defect["found"]
-        new_defect = Defect(serial_number, location, origin, type, cause, found)
-        # print(f'Defect Object: {new_defect}\n')
+    def add_defect(self, defect) -> int:
+        new_defect = Defect(
+            defect["serial_number"], 
+            defect["location"], 
+            defect["origin"], 
+            defect["type"], 
+            defect["cause"], 
+            defect["found"]
+        )
         db.session.add(new_defect)
         self.save()
         return new_defect.id
@@ -76,13 +75,18 @@ class DefectManager():
     def get_defects(self):
         all_defects = Defect.query.all()
         result = self.get_schema(has_many=True).dump(all_defects)
-        # print(f'\nQueried Defects: {all_defects}\n')
-        # print(f'Returned Schema: {result}\n')
         return result
     
     def get_defect(self, uid):
-        # panel = Defect.query.filter_by(id=uid).first()
         panel = Defect.query.get(uid)
+        return panel
+
+    def get_where(param, arg):
+        panel = Defect.query.filter_by(param=arg).first()
+        return panel
+
+    def get_all_where(param, arg):
+        panel = Defect.query.filter_by(param=arg).all()
         return panel
 
     def delete(self, id):

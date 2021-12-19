@@ -2,15 +2,25 @@
 
 ## Setup
 
-    > pip install -r requirements.txt
+Install virtual environment:
+
+    > python -m venv venv
+
+Activate virtual environment:
+
+    > venv\Scripts\Activate.ps1
+
+Install dependencies:
+
+    (venv) > pip install -r requirements.txt
 
 Run app: 
 
-    > python app.py
+    (venv) > python app.py
 
 Run test:
 
-    > python -m unittest tests.py
+    (venv) > python -m unittest tests.py
 
 ## References
 

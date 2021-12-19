@@ -1,5 +1,12 @@
-__pycache__/
+# Project stuff
+*__pycache__/
 .vscode/
 venv/
 
+# Build artifacts
+dist/
+*.egg-info/
+*.egg
+
+# App
 data/*.sqlite

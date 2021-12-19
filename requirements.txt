@@ -5,3 +5,4 @@ flask-marshmallow
 marshmallow-sqlalchemy
 
 # 
+-e git+https://github.com/brianteachman/defectdb.git#egg=defectdb-tws

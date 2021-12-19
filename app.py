@@ -35,21 +35,15 @@ def create_defect():
 @app.route("/defect/<id>", methods=["PUT"])
 def update_defect(id):
     defect = db.get_defect(id)
-    defect.serial_number = request.json['serial_number']
-    defect.location = request.json['location']
-    defect.type = request.json['type']
-    defect.found = request.json['found']
-    defect.origin = request.json['origin']
-    defect.cause = request.json['cause']
-
-    db.save()
+    # db.update(id, request.json)
+    db.update(defect, request.json)
     return db.schemed_json(defect)
 
 # TODO: Remove this from production.
 @app.route("/delete", methods=["GET"])
 def delete_table():
     db.delete_all()
-    return jsonify("BOMBED das tables!!")
+    return jsonify("BOMBED da tables!!")
 
 # Endpoint for deleting a record
 @app.route("/defect/<id>", methods=["DELETE"])

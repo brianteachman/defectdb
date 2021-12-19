@@ -28,7 +28,7 @@ class TestDefectManager(unittest.TestCase):
         self.db = DefectManager(self.app, db_file)
 
     def tearDown(self):
-        self.db.get_db().session.close()
+        self.db._get_db().session.close()
         super().tearDown()
 
     def test_add_defect(self):

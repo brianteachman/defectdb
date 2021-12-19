@@ -56,6 +56,9 @@ class DefectManager():
         # Build the database
         #db.create_all()
 
+    def _get_db(self):
+        return db
+
     def save(self):
         db.session.commit()
 
@@ -89,6 +92,16 @@ class DefectManager():
         panel = Defect.query.filter_by(param=arg).all()
         return panel
 
+    def update(self, defect, data):
+        # defect = self.get_defect(id)
+        defect.serial_number = data['serial_number']
+        defect.location = data['location']
+        defect.type = data['type']
+        defect.found = data['found']
+        defect.origin = data['origin']
+        defect.cause = data['cause']
+        self.save()
+
     def delete(self, id):
         defect = self.get_defect(id)
         db.session.delete(defect)
@@ -105,9 +118,6 @@ class DefectManager():
             return DefectSchema(many=True)
         else:
             return DefectSchema()
-
-    def get_db(self):
-        return db
     
     def schemed_json(self, defect):
-        self.get_schema().jsonify(defect)
+        return self.get_schema().jsonify(defect)

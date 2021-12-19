@@ -5,7 +5,7 @@ from flask import Flask
 from defectdb import DefectManager
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-db_file = os.path.join(basedir + os.path.sep + "data" + os.path.sep + "test.sqlite")
+db_file = os.path.join(basedir + os.path.sep + "test.sqlite")
 
 test_defect = {
     "serial_number":"202112041314w",

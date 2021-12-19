@@ -22,6 +22,10 @@ Run test:
 
     (venv) > python -m unittest tests.py
 
+If needed to create bundled package (dist); run Build:
+
+    > py -m build
+
 ## References
 
 - [SQLite](https://sqlite.org/cli.html)

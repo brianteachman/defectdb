@@ -38,18 +38,21 @@ class DefectSchema(ma.Schema):
     class Meta:
         fields = ('id', 'serial_number', 'location', 'origin', 'type', 'cause', 'found', 'date', 'time')
 
+
 class DefectManager():
     def __init__(self, app, db_name) -> None:
-        # Database setup must be configured before db.init__app called
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_name
-        app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-        # 
-        db.init_app(app)
-        ma.init_app(app)
-
+        
         # Add to Context Manager
         app.app_context().push()
 
+        # Database setup must be configured before db.init__app called
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_name
+        app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+        
+        # with app.app_context():
+        db.init_app(app)
+        ma.init_app(app)
+        
         # Build the database
         #db.create_all()
 

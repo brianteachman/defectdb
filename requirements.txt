@@ -4,5 +4,4 @@ Flask-SQLAlchemy
 flask-marshmallow
 marshmallow-sqlalchemy
 
-###### Refer to other requirements ######
-# -e git+https://github.com/brianteachman/csvdb.git#egg=csvdm-tws
+# 

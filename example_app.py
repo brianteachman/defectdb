@@ -4,6 +4,7 @@ from defectdb import DefectManager
 
 app = Flask(__name__)
 
+# Get path to sqlite database (defects.sqlite)
 basedir = os.path.abspath(os.path.dirname(__file__))
 db_file = os.path.join(basedir + os.path.sep + "data" + os.path.sep + "defects.sqlite")
 # 
@@ -11,7 +12,7 @@ db = DefectManager(app, db_file)
 # 
 print(f'\nOpened database: {db_file}\n')
 
-
+# Display all defects, JSON formatted
 @app.route("/", methods=["GET"])
 def home_page():
     defects = db.get_defects()
@@ -35,7 +36,6 @@ def create_defect():
 @app.route("/defect/<id>", methods=["PUT"])
 def update_defect(id):
     defect = db.get_defect(id)
-    # db.update(id, request.json)
     db.update(defect, request.json)
     return db.schemed_json(defect)
 

@@ -1,4 +1,6 @@
-## Install
+# Defect manager using Flask-SQLAlchemy's SQLite adapter
+
+## Setup
 
     > pip install -r requirements.txt
 

@@ -42,7 +42,7 @@ class DefectSchema(ma.Schema):
 class DefectManager():
     def __init__(self, app, db_name) -> None:
         
-        # Add to Context Manager
+        # Create the Context
         app.app_context().push()
 
         # Database setup must be configured before db.init__app called
